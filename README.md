@@ -103,4 +103,4 @@ This project is licensed under the MIT License.
 
 ---
 
-© 2025 QuoteFlow. Inspiring minds, one quote at a time. Made by Nafees and Harish | IITJ
+© 2025 QuoteFlow. Inspiring minds, one quote at a time.
