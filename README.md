@@ -5,12 +5,6 @@ Transform your day with carefully curated motivational quotes delivered to your 
 ---
 
 ## 🚀 Features
-
-- **Personalized Scheduling:**
-  - Choose delivery frequency: daily, weekly, specific days, or custom intervals.
-  - Select preferred time of day and timezone.
-  - Option to receive quotes only on weekends.
-  - Flexible delivery window (exact, ±30 min, ±1 hour, ±2 hours).
 - **Curated Content:**
   - Hand-picked motivational quotes from thought leaders.
   - Fresh, inspiring content with every delivery.
