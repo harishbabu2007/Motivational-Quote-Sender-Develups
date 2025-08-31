@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 async function get_random_quote() {
   try {
-    const res = await fetch("https://dummyjson.com/quotes/1");
+    const res = await fetch("https://dummyjson.com/quotes/random");
     const data = await res.json();
     return data?.quote;
   } catch (err) {
