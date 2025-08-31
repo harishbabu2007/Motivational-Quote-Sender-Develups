@@ -12,9 +12,9 @@ export const dynamic = "force-dynamic";
 
 async function get_random_quote() {
   try {
-    const res = await fetch("https://api.quotable.io/random");
+    const res = await fetch("https://dummyjson.com/quotes/1");
     const data = await res.json();
-    return data?.content || "Stay motivated!";
+    return data?.quote;
   } catch (err) {
     console.error("Error fetching quote:", err);
     return "Stay motivated!";
