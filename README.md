@@ -16,16 +16,14 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- **Framework:** [Next.js 13](https://nextjs.org/) (App Router, Client Components)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), [clsx](https://github.com/lukeed/clsx)
-- **State & Forms:** React Hooks, [react-hook-form](https://react-hook-form.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Other:**
-  - [next-themes](https://github.com/pacocoursey/next-themes) for dark mode
-  - [zod](https://zod.dev/) for validation
-  - [date-fns](https://date-fns.org/) for date utilities
+- **Next.js** – Modern React framework for building fast and scalable web applications.
+- **Vercel Cron Jobs** – Reliable and easy-to-manage task scheduling.
+- **Tailwind CSS** – Sleek and responsive styling for a modern UI.
+- **SMTP** – Secure and efficient email delivery.
+- **Deployment** – Hosted on [Vercel](https://vercel.com/) for seamless CI/CD and scalability.
+
 
 ---
 
