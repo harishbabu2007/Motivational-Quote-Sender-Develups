@@ -4,7 +4,7 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## 🚀 Features
+##  Features
 - **Curated Content:**
   - Hand-picked motivational quotes from thought leaders.
   - Fresh, inspiring content with every delivery.
@@ -16,7 +16,7 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## 🖥️ Tech Stack
+## Tech Stack
 
 - **Framework:** [Next.js 13](https://nextjs.org/) (App Router, Client Components)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), [clsx](https://github.com/lukeed/clsx)
@@ -29,7 +29,7 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v18 or later recommended)
@@ -58,7 +58,7 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 - `src/app/` - Main Next.js app directory (pages, layout, global styles)
 - `src/components/` - Reusable UI components (including theme toggle, cards, forms)
@@ -68,7 +68,7 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## ✨ Customization
+## Customization
 
 - **Styling:**
   - Tailwind CSS is fully configured with custom themes and animations (see `tailwind.config.ts` and `globals.css`).
@@ -76,19 +76,19 @@ Transform your day with carefully curated motivational quotes delivered to your 
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to fork the repo and submit a pull request.
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👥 Credits
+## Credits
 
 - **Made by:** Nafees and Harish | IITJ
 - **UI/UX:** Inspired by modern SaaS and productivity tools
