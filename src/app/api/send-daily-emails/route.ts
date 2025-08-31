@@ -1,90 +1,87 @@
 import { NextResponse } from "next/server";
-import { transporter } from "@/src/lib/mailer";
 import clientPromise from "@/src/lib/mongodb";
+import { transporter } from "@/src/lib/mailer";
 
+// Function to fetch a random quote
 async function get_random_quote() {
-  try{
-    const res = await fetch("http://api.quotable.io/random", {
-      method: "GET"
-    });
+  try {
+    const res = await fetch("https://api.quotable.io/random");
     const data = await res.json();
-
-    return data?.content;
+    return data?.content || "Stay motivated!";
   } catch (err) {
-    console.error("Error:", err);
+    console.error("Error fetching quote:", err);
+    return "Stay motivated!";
   }
-
 }
 
-export async function GET() {
-  try {
-    const client = await clientPromise;
-    const db = client.db("motivation-app");
+// Function to send daily emails
+async function sendDailyEmails() {
+  const client = await clientPromise;
+  const db = client.db("motivation-app");
 
-    // const users = await db.collection("users").find().toArray();
+  // Fetch all users fresh, ensuring latest writes are visible
+  const users = await db
+    .collection("users")
+    .find({}, { readConcern: { level: "majority" } })
+    .toArray();
 
-    const users = await db
-      .collection("users")
-      .find({}, { readConcern: { level: "majority" } })
-      .toArray();
+  console.log(
+    "Users to email:",
+    users.map((u) => u.email)
+  );
 
-      await Promise.allSettled(
-        users.map(async (user) => {
+  // Batch size to avoid serverless timeouts
+  const batchSize = 50;
+
+  for (let i = 0; i < users.length; i += batchSize) {
+    const batch = users.slice(i, i + batchSize);
+
+    // Send emails concurrently within batch
+    await Promise.allSettled(
+      batch.map(async (user) => {
+        try {
           const quote = await get_random_quote();
+
           await transporter.sendMail({
             from: `"Motivation Quotes" <${process.env.EMAIL_USER}>`,
             to: user.email,
             subject: "Your Daily Motivation... :) | FROM DEVELUPS",
             html: `
-            <div style="padding:10px;">
-            <h2>Good Morning! Here's a nice quote to get ur day started....</h2>
-            <p>${quote}</p>
-            <hr />
-            <p style="font-size:12px; color:gray;">
-                If you no longer want these emails, 
-                <a href="https://your-app.com/api/unsubscribe?email=${encodeURIComponent(
-                  user.email
-                )}">
-                Unsubscribe
-                </a>
-
-            </p>
-            </div>
-        `,
+              <div style="padding:10px;">
+                <h2>Good Morning! Here's a quote to start your day:</h2>
+                <p>${quote}</p>
+                <hr />
+                <p style="font-size:12px; color:gray;">
+                  If you no longer want these emails, 
+                  <a href="${process.env.APP_URI}/api/unsubscribe?email=${encodeURIComponent(user.email)}">
+                  Unsubscribe
+                  </a>
+                </p>
+              </div>
+            `,
           });
-        })
-      );
 
+          console.log("Sent to:", user.email);
+        } catch (err) {
+          console.error("Failed sending to:", user.email, err);
+        }
+      })
+    );
+  }
 
-    // for (const user of users) {
-    //   const quote = await get_random_quote();
+  console.log("Total users emailed:", users.length);
+  return users.length;
+}
 
-    //   await transporter.sendMail({
-    //     from: `"Motivation Quotes" <${process.env.EMAIL_USER}>`,
-    //     to: user.email,
-    //     subject: "Your Daily Motivation... :) | FROM DEVELUPS",
-    //     html: `
-    //         <div style="padding:10px;">
-    //         <h2>Good Morning! Here's a nice quote to get ur day started....</h2>
-    //         <p>${quote}</p>
-    //         <hr />
-    //         <p style="font-size:12px; color:gray;">
-    //             If you no longer want these emails, 
-    //             <a href="https://your-app.com/api/unsubscribe?email=${encodeURIComponent(
-    //               user.email
-    //             )}">
-    //             Unsubscribe
-    //             </a>
+// GET handler for cron
+export async function GET() {
+  console.log("Cron triggered at:", new Date().toISOString());
 
-    //         </p>
-    //         </div>
-    //     `,
-    //   });
-    // }
-
-    return NextResponse.json({ success: true, sent: users.length });
+  try {
+    const totalSent = await sendDailyEmails();
+    return NextResponse.json({ success: true, sent: totalSent });
   } catch (err: any) {
-    console.error("Error sending daily emails...", err);
+    console.error("Error in cron:", err);
     return NextResponse.json(
       { success: false, error: err.message },
       { status: 500 }
