@@ -2,8 +2,7 @@
   "crons": [
     {
       "path": "/api/send-daily-mails",
-      "schedule": "0 8 * * *",
-      "timezone": "UTC"
+      "schedule": "0 8 * * *"
     }
   ]
 }
