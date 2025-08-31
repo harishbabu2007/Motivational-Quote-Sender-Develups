@@ -79,8 +79,6 @@ Transform your day with carefully curated motivational quotes delivered to your 
 - **Styling:**
   - Tailwind CSS is fully configured with custom themes and animations (see `tailwind.config.ts` and `globals.css`).
   - Easily extend or modify the color palette and UI components.
-- **Quotes:**
-  - To add or update quotes, integrate your own quote source or API in the backend (not included in this frontend-only version).
 
 ---
 
