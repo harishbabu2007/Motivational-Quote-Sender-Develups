@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/src/components/theme-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'QuoteFlow - Daily Motivation Delivered',
+  title: 'QuoteFlow | Develups - Daily Motivation Delivered',
   description: 'Transform your day with carefully curated motivational quotes delivered to your inbox exactly when you need them most.',
 };
 

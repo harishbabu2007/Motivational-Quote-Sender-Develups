@@ -1,6 +1,20 @@
 import { NextResponse } from "next/server";
-import { transporter } from "@/lib/mailer";
-import clientPromise from "@/lib/mongodb";
+import { transporter } from "@/src/lib/mailer";
+import clientPromise from "@/src/lib/mongodb";
+
+async function get_random_quote() {
+  try{
+    const res = await fetch("http://api.quotable.io/random", {
+      method: "GET"
+    });
+    const data = await res.json();
+
+    return data?.content;
+  } catch (err) {
+    console.error("Error:", err);
+  }
+
+}
 
 export async function GET() {
   try {
@@ -10,7 +24,7 @@ export async function GET() {
     const users = await db.collection("users").find().toArray();
 
     for (const user of users) {
-      const quote = "All the Best. This is the quote";
+      const quote = await get_random_quote();
 
       await transporter.sendMail({
         from: `"Motivation Quotes" <${process.env.EMAIL_USER}>`,

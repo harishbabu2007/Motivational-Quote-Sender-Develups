@@ -1,4 +1,4 @@
-async function test_send_email() {
+export async function send_email_init() {
   try {
     const res = await fetch("/api/send", {
       method: "POST",
@@ -10,14 +10,14 @@ async function test_send_email() {
       }),
     });
 
-    const data = await res.json();
-    console.log("Response:", data);
+    const text = await res.json();
+    console.log("response:", text);
   } catch (err) {
     console.error("Error:", err);
   }
 }
 
-async function test_subscribe() {
+export async function subscribe_mailing() {
   try {
     const res = await fetch("/api/subscribe", {
       method: "POST",
@@ -31,7 +31,7 @@ async function test_subscribe() {
   }
 }
 
-async function test_send_all_recipients() {
+export async function send_all_recipients() {
   try {
     const res = await fetch("/api/send-daily-emails", {
       method: "GET",
