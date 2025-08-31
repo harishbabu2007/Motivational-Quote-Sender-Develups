@@ -75,7 +75,7 @@ export default function Home() {
               <Quote className="h-6 w-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-violet-600 bg-clip-text text-transparent">
-              QuoteFlow | Develups
+              QuoteFlow | Devlups
             </span>
           </div>
           <ThemeToggle />
@@ -188,7 +188,7 @@ export default function Home() {
           {/* Footer */}
           <footer className="text-center pt-12 text-sm text-muted-foreground">
             <p>© 2025 QuoteFlow. Inspiring minds, one quote at a time.</p>
-            <p>Made by Nafees and Harish for Develup Labs @ IITJ</p>
+            <p>Made by Nafees and Harish for Devlup Labs @ IITJ</p>
           </footer>
         </main>
       </div>
