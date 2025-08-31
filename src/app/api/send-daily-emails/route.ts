@@ -2,7 +2,14 @@ import { NextResponse } from "next/server";
 import clientPromise from "@/src/lib/mongodb";
 import { transporter } from "@/src/lib/mailer";
 
-// Function to fetch a random quote
+export const dynamic = "force-dynamic";
+
+/**
+ * @method GET
+ * @returns NextResponse
+ * @description Find All Prompts and return
+ */
+
 async function get_random_quote() {
   try {
     const res = await fetch("https://api.quotable.io/random");
@@ -14,12 +21,10 @@ async function get_random_quote() {
   }
 }
 
-// Function to send daily emails
 async function sendDailyEmails() {
   const client = await clientPromise;
   const db = client.db("motivation-app");
 
-  // Fetch all users fresh, ensuring latest writes are visible
   const users = await db
     .collection("users")
     .find({}, { readConcern: { level: "majority" } })
@@ -30,13 +35,11 @@ async function sendDailyEmails() {
     users.map((u) => u.email)
   );
 
-  // Batch size to avoid serverless timeouts
   const batchSize = 50;
 
   for (let i = 0; i < users.length; i += batchSize) {
     const batch = users.slice(i, i + batchSize);
 
-    // Send emails concurrently within batch
     await Promise.allSettled(
       batch.map(async (user) => {
         try {
@@ -73,7 +76,6 @@ async function sendDailyEmails() {
   return users.length;
 }
 
-// GET handler for cron
 export async function GET() {
   console.log("Cron triggered at:", new Date().toISOString());
 

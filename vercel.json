@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "app/api/send-daily-emails/route.ts": { "runtime": "edge" }
-  },
   "crons": [
     {
       "path": "/api/send-daily-emails",
