@@ -38,7 +38,6 @@ Transform your day with carefully curated motivational quotes delivered to your 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/harishbabu2007/Motivational-Quote-Sender-Develups.git
-   cd QuoteFlow
    ```
 2. **Install dependencies:**
    ```bash
