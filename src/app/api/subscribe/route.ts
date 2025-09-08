@@ -6,7 +6,7 @@ async function send_welcome_email(email: string) {
   await transporter.sendMail({
     from: `"Motivation Quotes" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: "Your Daily Motivation... :) | FROM DEVELUPS",
+    subject: "Your Daily Motivation... :) | FROM DEVLUPS",
     html: `
               <div style="padding:10px;">
               <h2>Thanks for subscribing to QuoteFlow. u will now receive a motivational quote everyday at 7:30am IST</h2>
