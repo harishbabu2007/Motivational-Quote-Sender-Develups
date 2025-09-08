@@ -48,7 +48,7 @@ async function sendDailyEmails() {
           await transporter.sendMail({
             from: `"Motivation Quotes" <${process.env.EMAIL_USER}>`,
             to: user.email,
-            subject: "Your Daily Motivation... :) | FROM DEVELUPS",
+            subject: "Your Daily Motivation... :) | FROM DEVLUPS",
             html: `
               <div style="padding:10px;">
                 <h2>Good Morning! Here's a quote to start your day:</h2>
